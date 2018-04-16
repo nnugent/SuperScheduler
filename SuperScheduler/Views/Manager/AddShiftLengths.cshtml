@@ -1,0 +1,25 @@
+﻿@model SuperScheduler.Models.ShiftLengths
+@{
+    ViewBag.Title = "AddShiftLengths";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row col-md-12">
+    <h2>Add Shift Lengths</h2>
+    <p>How long you want your new shift to be. </p>
+    <br />
+    @using (Html.BeginForm("NewShift", "Manager"))
+    {
+        <div class=" row form-group col-md-12 ">
+            @Html.LabelFor(Model => Model.Shift, null, new { @style = "font-size:18px" })
+            @Html.TextBoxFor(Model => Model.Shift, null, new { @class = "form-control" })
+        </div>
+
+        <div class=" row form-group col-md-12 ">
+            <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+            @Html.ActionLink("Finish", "HomePage", "Manager", null, new { @class = "btn btn-default", style = "width:100px" })
+        </div>
+    }
+</div>
+
+
+

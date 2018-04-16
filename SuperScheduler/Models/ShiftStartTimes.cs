@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace SuperScheduler.Models
     {
         public int Id { get; set; }
 
-        public List<DateTime> ShiftLengths { get; set; }
+        [Display(Name = "Shift Start Time")]
+        public double ShiftStartTime { get; set; }
     }
 }
