@@ -132,6 +132,13 @@ namespace SuperScheduler.Controllers
             return View("ShiftLengths",viewModel);
         }
 
+        public ActionResult RemoveShiftLength(string hours)
+        {
+            var lengthOfShift = Convert.ToDouble(hours);
+            _context.ShiftLengths.Remove(_context.ShiftLengths.Select(s => s).FirstOrDefault(s=> s.Shift.Equals(lengthOfShift)));
+            _context.SaveChanges();
+            return RedirectToAction("ShiftLengths");
+        }
         public bool CheckIfExists(ShiftStartTimes shiftStart) 
         {
             var count = _context.ShiftStartTimes.Select(s => s.ShiftStartTime).Where(s => s.Equals(shiftStart.ShiftStartTime)).Count();
