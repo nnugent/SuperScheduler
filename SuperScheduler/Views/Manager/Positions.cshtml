@@ -7,26 +7,26 @@
     <h2>Positions</h2>
 
 
-    @if (Model.ShiftLengths.Count > 0)
+    @if (Model.Positions.Count > 0)
     {
         <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
             <thead>
                 <tr>
                     <th style="width:15%; text-align:center">#</th>
                     <th style="width:60%; text-align:center">Positions</th>
-                    <th style="width:25%; text-align:center">Remove Positions</th>
+                    <th style="width:25%; text-align:center">Remove Position</th>
                 </tr>
             </thead>
             <tbody style="padding-top:10px;">
                 @{
                     int row = 1;
-                    foreach (var el in Model.ShiftLengths)
+                    foreach (var el in Model.Positions)
                     {
                         <tr style="">
                             <td style="width:15%;padding-top:11px;">@row</td>
-                            <td style="width:60%;padding-top:11px;">@el.ToString(@"hh\:mm") Hours</td>
+                            <td style="width:60%;padding-top:11px;">@el.ToString()</td>
                             <td style="width:25%">
-                                @Html.ActionLink("Remove", "RemoveShiftLength", "Manager", new { hours = el.Hours }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
+                                @Html.ActionLink("Remove", "RemovePosition", "Manager", new { positionName = el.ToString() }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
                             </td>
                             @{row++;}
                         </tr>
@@ -37,10 +37,10 @@
     }
     else
     {
-        <h3>You have no set shift durations. Click add to add one!</h3>
+        <h3>You have no set positions. Click add to add one!</h3>
     }
 
-    @Html.ActionLink("Add", "AddShiftLengths", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
+    @Html.ActionLink("Add", "AddPositions", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
 </div>
 
 

@@ -116,7 +116,7 @@ namespace SuperScheduler.Controllers
             return RedirectToAction("AddShiftStartTimes");
         }
 
-        public ActionResult Position()
+        public ActionResult Positions()
         {
             var positions = _context.Positions.ToList();
             var positionNames = new List<string>();
@@ -153,7 +153,7 @@ namespace SuperScheduler.Controllers
 
             foreach (ShiftStartTimes el in shiftStartTimes)
             {
-                shiftStartTimesInTime.Add(TimeSpan.Parse(el.ShiftStartTime.ToString()));
+                shiftStartTimesInTime.Add(TimeSpan.Parse(el.ShiftStartTime.ToString() + ":00" ));
             }
             var viewModel = new ShiftStartTimesViewModel()
             {
@@ -162,12 +162,27 @@ namespace SuperScheduler.Controllers
             return View("ShiftStartTimes", viewModel);
         }
 
+        public ActionResult RemovePosition(string positionName)
+        {
+            _context.Positions.Remove(_context.Positions.Select(s => s).FirstOrDefault(s => s.Name.Equals(positionName)));
+            _context.SaveChanges();
+            return RedirectToAction("Positions");
+        }
+
         public ActionResult RemoveShiftLength(string hours)
         {
             var lengthOfShift = Convert.ToDouble(hours);
             _context.ShiftLengths.Remove(_context.ShiftLengths.Select(s => s).FirstOrDefault(s => s.Shift.Equals(lengthOfShift)));
             _context.SaveChanges();
             return RedirectToAction("ShiftLengths");
+        }
+
+        public ActionResult RemoveShiftStartTime(string time)
+        {
+            var shiftStartTime = Convert.ToDouble(time);
+            _context.ShiftStartTimes.Remove(_context.ShiftStartTimes.Select(s => s).FirstOrDefault(s => s.ShiftStartTime.Equals(shiftStartTime)));
+            _context.SaveChanges();
+            return RedirectToAction("ShiftStartTimes");
         }
 
         public bool CheckIfExists(ShiftStartTimes shiftStart)
