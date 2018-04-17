@@ -7,7 +7,7 @@ namespace SuperScheduler.ViewModels
 {
     public class PositionViewModel
     {
-        public List<String> Positions { get; set; }
+        public List<string> Positions { get; set; }
         
     }
 }

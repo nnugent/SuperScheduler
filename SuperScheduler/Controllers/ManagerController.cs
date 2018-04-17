@@ -18,7 +18,6 @@ namespace SuperScheduler.Controllers
     public class ManagerController : Controller
     {
         private ApplicationDbContext _context;
-        
 
         public ManagerController()
         {
@@ -83,7 +82,7 @@ namespace SuperScheduler.Controllers
                     return RedirectToAction(RetryDialogueBox("Input was invalid. Click retry to enter a new postion name.", "Invalid Input.", "AddPositions"));
                 }
             }
-            else if(newPosition.Name == "" || newPosition.Name == null)
+            else if (newPosition.Name == "" || newPosition.Name == null)
             {
                 return RedirectToAction(RetryDialogueBox("You must input a name. Click retry to enter a new position.", "Invalid Input.", "AddPositions"));
             }
@@ -95,7 +94,7 @@ namespace SuperScheduler.Controllers
         }
 
         public ActionResult NewShiftStartTime(ShiftStartTimes newShiftStartTime)
-        { 
+        {
             try
             {
                 newShiftStartTime.ShiftStartTime = Convert.ToDouble(newShiftStartTime.ShiftStartTime);
@@ -117,32 +116,64 @@ namespace SuperScheduler.Controllers
             return RedirectToAction("AddShiftStartTimes");
         }
 
+        public ActionResult Position()
+        {
+            var positions = _context.Positions.ToList();
+            var positionNames = new List<string>();
+            foreach(Position el in positions)
+            {
+                positionNames.Add(el.Name);
+            }
+            var viewModel = new PositionViewModel()
+            {
+                Positions = positionNames
+            };
+            return View("Positions", viewModel);
+        }
+
         public ActionResult ShiftLengths()
         {
             var shiftLengths = _context.ShiftLengths.ToList();
             List<TimeSpan> shiftsInTime = new List<TimeSpan>();
-            foreach(ShiftLengths el in shiftLengths)
+            foreach (ShiftLengths el in shiftLengths)
             {
-                shiftsInTime.Add(TimeSpan.Parse(el.Shift.ToString()+":00"));
+                shiftsInTime.Add(TimeSpan.Parse(el.Shift.ToString() + ":00"));
             }
             var viewModel = new ShiftLengthViewModel()
             {
                 ShiftLengths = shiftsInTime
             };
-            return View("ShiftLengths",viewModel);
+            return View("ShiftLengths", viewModel);
+        }
+
+        public ActionResult ShiftStartTimes()
+        {
+            var shiftStartTimes = _context.ShiftStartTimes.ToList();
+            var shiftStartTimesInTime = new List<TimeSpan>();
+
+            foreach (ShiftStartTimes el in shiftStartTimes)
+            {
+                shiftStartTimesInTime.Add(TimeSpan.Parse(el.ShiftStartTime.ToString()));
+            }
+            var viewModel = new ShiftStartTimesViewModel()
+            {
+                ShiftStartTimes = shiftStartTimesInTime
+            };
+            return View("ShiftStartTimes", viewModel);
         }
 
         public ActionResult RemoveShiftLength(string hours)
         {
             var lengthOfShift = Convert.ToDouble(hours);
-            _context.ShiftLengths.Remove(_context.ShiftLengths.Select(s => s).FirstOrDefault(s=> s.Shift.Equals(lengthOfShift)));
+            _context.ShiftLengths.Remove(_context.ShiftLengths.Select(s => s).FirstOrDefault(s => s.Shift.Equals(lengthOfShift)));
             _context.SaveChanges();
             return RedirectToAction("ShiftLengths");
         }
-        public bool CheckIfExists(ShiftStartTimes shiftStart) 
+
+        public bool CheckIfExists(ShiftStartTimes shiftStart)
         {
             var count = _context.ShiftStartTimes.Select(s => s.ShiftStartTime).Where(s => s.Equals(shiftStart.ShiftStartTime)).Count();
-            if(count > 0)
+            if (count > 0)
             {
                 return true;
             }
