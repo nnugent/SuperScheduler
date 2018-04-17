@@ -1,0 +1,23 @@
+﻿@model SuperScheduler.Models.Position
+@{
+    ViewBag.Title = "Add Positions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row col-md-12">
+    <h2>Add New Postions</h2>
+    <p>What positions you need to schedule.</p>
+    <br />
+    @using (Html.BeginForm("NewPosition", "Manager"))
+    {
+        <div class=" row form-group col-md-12 ">
+            @Html.LabelFor(Model => Model.Name, null, new { @style = "font-size:18px" })
+            @Html.TextBoxFor(Model => Model.Name, null, new { @class = "form-control" })
+        </div>
+
+        <div class=" row form-group col-md-12 ">
+            <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+            @Html.ActionLink("Finish", "HomePage", "Manager", null, new { @class = "btn btn-default", style = "width:100px" })
+        </div>
+    }
+</div>

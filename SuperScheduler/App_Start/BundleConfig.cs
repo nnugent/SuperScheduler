@@ -20,11 +20,14 @@ namespace SuperScheduler
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootswatch/superhero/bootstrap.css",
+                      "~/Content/superhero.css",
+                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/superhero.min.css",
                       "~/Content/site.css"));
         }
     }
