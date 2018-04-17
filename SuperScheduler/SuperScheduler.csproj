@@ -243,7 +243,9 @@
     <Compile Include="Models\TwoWeekSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="ViewModels\ShiftLengthViewModel.cs" />
+    <Compile Include="ViewModels\ShiftStartTimesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\superhero.min.css" />
@@ -352,6 +354,8 @@
     <Content Include="Views\Manager\AddShiftStartTimes.cshtml" />
     <Content Include="Views\Manager\AddPositions.cshtml" />
     <Content Include="Views\Manager\ShiftLengths.cshtml" />
+    <Content Include="Views\Manager\Positions.cshtml" />
+    <Content Include="Views\Manager\ShiftStartTimes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

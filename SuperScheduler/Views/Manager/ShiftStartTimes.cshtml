@@ -1,10 +1,10 @@
-﻿@model SuperScheduler.ViewModels.ShiftLengthViewModel
+﻿@model SuperScheduler.ViewModels.ShiftStartTimes
 @{
-    ViewBag.Title = "Shift Lengths";
+    ViewBag.Title = "Shift Start Times";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-sm-12">
-    <h2>Shift Lengths</h2>
+    <h2>Shift Start Times</h2>
 
 
     @if (Model.ShiftLengths.Count > 0)
@@ -13,8 +13,8 @@
             <thead>
                 <tr>
                     <th style="width:15%; text-align:center">#</th>
-                    <th style="width:60%; text-align:center">Shift Lengths</th>
-                    <th style="width:25%; text-align:center">Remove Shift Lengths</th>
+                    <th style="width:60%; text-align:center">Shift Start Times (24-Hour Time)</th>
+                    <th style="width:25%; text-align:center">Remove Shift Start Times</th>
                 </tr>
             </thead>
             <tbody style="padding-top:10px;">
