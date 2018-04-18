@@ -9,8 +9,6 @@ namespace SuperScheduler.Models
     {
         public int Id { get; set; }
 
-        public List<Employee> Staff { get; set; }
-
         public DateTime ShiftStart { get; set; }
 
         public DateTime ShiftEnd { get; set; }

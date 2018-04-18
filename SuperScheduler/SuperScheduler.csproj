@@ -191,6 +191,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Migrations\201804181920589_updateEmployeeProperties.cs" />
+    <Compile Include="Migrations\201804181920589_updateEmployeeProperties.Designer.cs">
+      <DependentUpon>201804181920589_updateEmployeeProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Preference.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -356,10 +361,11 @@
     <Content Include="Views\Manager\ShiftLengths.cshtml" />
     <Content Include="Views\Manager\Positions.cshtml" />
     <Content Include="Views\Manager\ShiftStartTimes.cshtml" />
+    <Content Include="Views\Employee\HomePage.cshtml" />
+    <Content Include="Views\Employee\Tester.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -391,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804161545267_ChangedPositionToIncludeNameInsteadOfPositionList.resx">
       <DependentUpon>201804161545267_ChangedPositionToIncludeNameInsteadOfPositionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804181920589_updateEmployeeProperties.resx">
+      <DependentUpon>201804181920589_updateEmployeeProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
