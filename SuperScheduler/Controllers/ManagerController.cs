@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+
 using System.Web.UI;
 using System.Windows.Forms;
 using SuperScheduler.ViewModels;
@@ -38,7 +39,6 @@ namespace SuperScheduler.Controllers
         {
             return View();
         }
-
         public ActionResult AddShiftStartTimes()
         {
             return View();
@@ -226,6 +226,15 @@ namespace SuperScheduler.Controllers
                 return "HomePage";
             }
             return retryView;
+        }
+
+        public ActionResult GenerateSchedule()
+        {
+            var employees = _context.Employees.ToList();
+            var shiftLengths = _context.ShiftLengths.ToList();
+            var shiftStartTimes = _context.ShiftStartTimes.ToList();
+
+            return View();
         }
     }
 }

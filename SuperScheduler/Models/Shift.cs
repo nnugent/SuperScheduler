@@ -5,14 +5,13 @@ using System.Web;
 
 namespace SuperScheduler.Models
 {
-    public class OneWeekSchedule
+    public class Shift
     {
         public int Id { get; set; }
 
-        public List<Day> Week { get; set; }
+        public ShiftLengths ShiftLength { get; set; }
 
-        public List<Employee> Employees { get; set; }
-
+        public ShiftStartTimes ShiftStartTime { get; set; }
 
     }
 }

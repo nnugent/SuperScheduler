@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SuperScheduler.Models;
+using SuperScheduler.CustomDataStructures;
 
 namespace SuperScheduler.Models
 {
@@ -35,6 +36,7 @@ namespace SuperScheduler.Models
 
         public DbSet<Day> Days { get; set; }
 
+        public DbSet<Preference> Preferences { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

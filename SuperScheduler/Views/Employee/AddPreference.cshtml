@@ -1,0 +1,54 @@
+﻿@model SuperScheduler.ViewModels.AddPreferenceViewModel
+@{
+    ViewBag.Title = "Add Preferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-4">
+        <h2>Add A New Preference</h2>
+        <p>What your work preferences are.</p>
+        <br />
+    </div>
+    @using (Html.BeginForm("NewPreference", "Employee"))
+    {
+
+        <div class=" row form-group col-md-12 ">
+
+            <div class="col-md-3">
+                @Html.LabelFor(Model => Model.Preference.ToWork, new { @style = "font-size: 18px; text-align:bottom" })
+            </div>
+            <div class=" col-md-1">
+                @Html.CheckBoxFor(Model => Model.Preference.ToWork, new { @class = "checkbox" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12">
+            <div class="col-md-4">
+                @Html.LabelFor(Model => Model.Preference.Day, new { @style = "font-size: 18px;" })
+                @Html.TextBoxFor(Model => Model.Preference.Day, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12">
+            <div class="col-md-4">
+                @Html.LabelFor(Model => Model.Preference.StartTimeId, new { @style = "font-size: 18px;" })
+                @Html.DropDownListFor(Model => Model.Preference.StartTimeId, new SelectList(Model.ShiftStartTimes, "Id", "ShiftStartTime"), "(24-Hour Time)", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12">
+            <div class="col-md-4">
+                @Html.LabelFor(Model => Model.Preference.ShiftLengthId, new { @style = "font-size: 18px;" })
+                @Html.DropDownListFor(Model => Model.Preference.ShiftLengthId, new SelectList(Model.ShiftLengths, "Id", "Shift"), "Length In Hours", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12 ">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+                @Html.ActionLink("Finish", "HomePage", "Employee", null, new { @class = "btn btn-default", style = "width:100px" })
+            </div>
+        </div>
+    }
+</div>
