@@ -13,6 +13,8 @@ namespace SuperScheduler.Models
 
         public List<Employee> Employees { get; set; }
 
+        public List<ShiftLengths> ShiftLenghts { get; set; }
 
+        public List<ShiftStartTimes> ShiftStartTimes { get; set; }
     }
 }

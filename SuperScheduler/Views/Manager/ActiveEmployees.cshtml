@@ -1,0 +1,47 @@
+﻿@model SuperScheduler.ViewModels.ActiveEmployeeViewModel
+@{
+    ViewBag.Title = "Active Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+    <h2>Active Employees</h2>
+
+
+    @if (Model.Employees.Count > 0)
+    {
+        <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
+            <thead>
+                <tr>
+                    <th style="width:15%; text-align:center">#</th>
+                    <th style="width:60%; text-align:center">Employees</th>
+                    <th style="width:25%; text-align:center">Remove From List</th>
+                </tr>
+            </thead>
+            <tbody style="padding-top:10px;">
+                @{
+                    int row = 1;
+                    foreach (var el in Model.Employees)
+                    {
+                        <tr style="">
+                            <td style="width:15%;padding-top:11px;">@row</td>
+                            <td style="width:60%;padding-top:11px;">@el.Name</td>
+                            <td style="width:25%">
+                                @Html.ActionLink("Remove", "RemoveEmployee", "Manager", new { positionName = el.ToString() }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
+                            </td>
+                            @{row++;}
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h3>You have no active employees. Click add to add one!</h3>
+    }
+
+    @Html.ActionLink("Add", "AddEmployee", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
+</div>
+
+

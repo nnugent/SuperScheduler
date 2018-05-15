@@ -30,6 +30,11 @@ namespace SuperScheduler.Controllers
             return View();
         }
 
+        public ActionResult AddEmployee()
+        {
+            return View();
+        }
+
         public ActionResult AddShiftLengths()
         {
             return View();
@@ -39,7 +44,13 @@ namespace SuperScheduler.Controllers
         {
             return View();
         }
+
         public ActionResult AddShiftStartTimes()
+        {
+            return View();
+        }
+
+        public ActionResult NewEmployee(Employee employee)
         {
             return View();
         }
@@ -129,6 +140,11 @@ namespace SuperScheduler.Controllers
                 Positions = positionNames
             };
             return View("Positions", viewModel);
+        }
+
+        public ActionResult ActiveEmployees()
+        {
+            return View();
         }
 
         public ActionResult ShiftLengths()

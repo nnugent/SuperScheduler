@@ -1,0 +1,44 @@
+﻿@model SuperScheduler.Models.OneWeekSchedule
+
+@{
+    ViewBag.Title = "GenerateSchedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-sm-12">
+    <h2>Shift Lengths</h2>
+    <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
+        <thead>
+            <tr>
+                <th text-align:center">Employee</th>
+                <th text-align:center">Sunday</th>
+                <th text-align:center">Monday</th>
+                <th text-align:center">Tuesday</th>
+                <th text-align:center">Wednesday</th>
+                <th text-align:center">Thursday</th>
+                <th text-align:center">Friday</th>
+                <th text-align:center">Saturday</th>
+                <th text-align:center">Sunday</th>
+            </tr>
+        </thead>
+        <tbody style="padding-top:10px;">
+            <tr>
+                @for (int i = 0; i < Model.Employees.Count; i++)
+                {
+                    <td padding-top:11px;">@Model.Employees[i].Name</td>
+                    for (int j = 0; j < Model.Week.Count; j++)
+                    {
+                        <td>
+                            @Html.NameFor(m => m.ShiftLenghts[j].Shift)
+                            @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftLength, new SelectList(Model.ShiftLenghts, "Id","ShiftLengths"), "Length of Shift")
+                        </td>
+                    }
+                }
+            </tr>
+
+        </tbody>
+    </table>
+
+    @Html.ActionLink("Add", "AddShiftLengths", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
+</div>

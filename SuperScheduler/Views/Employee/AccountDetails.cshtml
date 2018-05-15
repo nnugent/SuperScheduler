@@ -1,0 +1,44 @@
+﻿@model SuperScheduler.Models.Employee
+@{
+    ViewBag.Title = "Account Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-4">
+        <h2>Input your details.</h2>
+        <p>Availibility & Contact Information</p>
+        <br />
+    </div>
+    @using (Html.BeginForm("SaveDetails", "Employee"))
+    {
+        <div class=" row form-group col-md-12">
+            <div class="col-md-4">
+                @Html.LabelFor(Model => Model.Name, new { @style = "font-size: 18px;" })
+                @Html.TextBoxFor(Model => Model.Name, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12">
+            <div class="col-md-6">
+                @Html.LabelFor(Model => Model.PhoneNumber, new { @style = "font-size: 18px;" })
+                @Html.TextBoxFor(Model => Model.PhoneNumber, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12">
+            <div class="col-md-4">
+                @Html.LabelFor(Model => Model.MaxHours, new { @style = "font-size: 18px;" })
+                @Html.TextBoxFor(Model => Model.MaxHours, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class=" row form-group col-md-12 ">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+                @Html.ActionLink("Finish", "HomePage", "Employee", null, new { @class = "btn btn-default", style = "width:100px" })
+            </div>
+        </div>
+    }
+</div>
+

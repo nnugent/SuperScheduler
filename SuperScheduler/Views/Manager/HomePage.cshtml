@@ -24,13 +24,13 @@
 
     <div class="row-fluid">
         @Html.ActionLink("View Positions", "Positions", "Manager", null, new { @class = " btn btn-primary ", @style = " width: 200px " })
-
     </div>
 
     <br/>
 
     <div class="row-fluid">
-        <button class="btn btn-primary" style="width:200px">Generate New Schedule</button>
+        @Html.ActionLink("Generate New Schedule", "GenerateSchedule", "Manager", null, new { @class = " btn btn-primary ", @style = " width: 200px " })
+
     </div>
 
     <br/>
