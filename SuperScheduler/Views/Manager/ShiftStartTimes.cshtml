@@ -23,8 +23,8 @@
                     foreach (var el in Model.ShiftStartTimes)
                     {
                         <tr style="">
-                            <td style="width:15%;padding-top:11px;">@row</td>
-                            <td style="width:60%;padding-top:11px;">@el.ToString(@"hh\:mm")</td>
+                            <td style="width:15%;padding-top:14px;">@row</td>
+                            <td style="width:60%;padding-top:14px;">@el.ToString(@"hh\:mm")</td>
                             <td style="width:25%">
                                 @Html.ActionLink("Remove", "RemoveShiftStartTime", "Manager", new { time = el.Hours }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
                             </td>

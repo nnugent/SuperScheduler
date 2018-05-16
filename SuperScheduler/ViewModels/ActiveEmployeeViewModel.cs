@@ -8,8 +8,6 @@ namespace SuperScheduler.ViewModels
 {
     public class ActiveEmployeeViewModel
     {
-        public List<ApplicationUser> AllUsers { get; set; }
-
         public List<Employee> Employees { get; set; }
     }
 }

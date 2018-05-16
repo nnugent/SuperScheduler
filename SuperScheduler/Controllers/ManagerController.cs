@@ -30,11 +30,6 @@ namespace SuperScheduler.Controllers
             return View();
         }
 
-        public ActionResult AddEmployee()
-        {
-            return View();
-        }
-
         public ActionResult AddShiftLengths()
         {
             return View();
@@ -46,11 +41,6 @@ namespace SuperScheduler.Controllers
         }
 
         public ActionResult AddShiftStartTimes()
-        {
-            return View();
-        }
-
-        public ActionResult NewEmployee(Employee employee)
         {
             return View();
         }
@@ -144,7 +134,21 @@ namespace SuperScheduler.Controllers
 
         public ActionResult ActiveEmployees()
         {
-            return View();
+            var viewModel = new ActiveEmployeeViewModel()
+            {
+                Employees = _context.Employees.ToList()
+            };
+            return View(viewModel);
+        }
+
+        public ActionResult ChangeEmployeeStatus(string employeeId)
+        {
+            var employee = _context.Employees.Select(e => e).Where(e => e.UserId == employeeId).FirstOrDefault();
+            employee.Active = !employee.Active;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("ActiveEmployees");
         }
 
         public ActionResult ShiftLengths()

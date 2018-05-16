@@ -24,10 +24,10 @@ namespace SuperScheduler
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/superhero.css",
+                      "~/Content/darkly.css",
                       "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/superhero.min.css",
+                      "~/Content/darkly.min.css",
                       "~/Content/site.css"));
         }
     }

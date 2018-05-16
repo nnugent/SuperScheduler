@@ -23,8 +23,8 @@
                     foreach (var el in Model.Positions)
                     {
                         <tr style="">
-                            <td style="width:15%;padding-top:11px;">@row</td>
-                            <td style="width:60%;padding-top:11px;">@el.ToString()</td>
+                            <td style="width:15%;padding-top:14px;">@row</td>
+                            <td style="width:60%;padding-top:14px;">@el.ToString()</td>
                             <td style="width:25%">
                                 @Html.ActionLink("Remove", "RemovePosition", "Manager", new { positionName = el.ToString() }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
                             </td>

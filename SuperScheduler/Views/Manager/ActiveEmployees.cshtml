@@ -1,11 +1,11 @@
 ﻿@model SuperScheduler.ViewModels.ActiveEmployeeViewModel
 @{
-    ViewBag.Title = "Active Employees";
+    ViewBag.Title = "Employee List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="col-sm-12">
-    <h2>Active Employees</h2>
+    <h2>Employee List</h2>
 
 
     @if (Model.Employees.Count > 0)
@@ -13,9 +13,11 @@
         <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
             <thead>
                 <tr>
-                    <th style="width:15%; text-align:center">#</th>
-                    <th style="width:60%; text-align:center">Employees</th>
-                    <th style="width:25%; text-align:center">Remove From List</th>
+                    <th style="text-align:center">#</th>
+                    <th style="text-align:center">Employee Name</th>
+                    <th style="text-align:center">Phone Number</th>
+                    <th style="text-align:center">Employee Status</th>
+                    <th style="text-align:center">Change Status</th>
                 </tr>
             </thead>
             <tbody style="padding-top:10px;">
@@ -23,12 +25,26 @@
                     int row = 1;
                     foreach (var el in Model.Employees)
                     {
-                        <tr style="">
-                            <td style="width:15%;padding-top:11px;">@row</td>
-                            <td style="width:60%;padding-top:11px;">@el.Name</td>
-                            <td style="width:25%">
-                                @Html.ActionLink("Remove", "RemoveEmployee", "Manager", new { positionName = el.ToString() }, new { @class = " btn alert-danger ", @style = "padding: 5px" })
-                            </td>
+                        <tr>
+                            <td style="padding-top:14px;">@row</td>
+                            <td style="padding-top:14px;">@el.Name</td>
+                            <td style="padding-top:14px;">@el.PhoneNumber</td>
+
+                            @if (el.Active)
+                            {
+                                <td style="padding-top:14px; color:#00bc8c"><b>Active</b></td>
+                                <td>
+                                    @Html.ActionLink("Deactivate", "ChangeEmployeeStatus", "Manager", new { employeeId = el.UserId }, new { @class = " btn btn-primary", @style = "padding: 5px; width: 90px" })
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="padding-top:14px; color:#e74c3c"><b>Inactive</b></td>
+                                <td>
+                                    @Html.ActionLink("Activate", "ChangeEmployeeStatus", "Manager", new { employeeId = el.UserId }, new { @class = " btn btn-primary", @style = "padding: 5px; width: 90px" })
+                                </td>
+                            }
+
                             @{row++;}
                         </tr>
                     }
@@ -38,10 +54,6 @@
     }
     else
     {
-        <h3>You have no active employees. Click add to add one!</h3>
+        <h3>You have no employees to look at!</h3>
     }
-
-    @Html.ActionLink("Add", "AddEmployee", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
 </div>
-
-
