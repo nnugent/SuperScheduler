@@ -132,9 +132,9 @@ namespace SuperScheduler.Controllers
             return View("Positions", viewModel);
         }
 
-        public ActionResult ActiveEmployees()
+        public ActionResult Employees()
         {
-            var viewModel = new ActiveEmployeeViewModel()
+            var viewModel = new EmployeeViewModel()
             {
                 Employees = _context.Employees.ToList()
             };
@@ -148,7 +148,7 @@ namespace SuperScheduler.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("ActiveEmployees");
+            return RedirectToAction("Employees");
         }
 
         public ActionResult ShiftLengths()
@@ -253,8 +253,20 @@ namespace SuperScheduler.Controllers
             var employees = _context.Employees.ToList();
             var shiftLengths = _context.ShiftLengths.ToList();
             var shiftStartTimes = _context.ShiftStartTimes.ToList();
+            var week = new List<Models.Day>();
 
-            return View();
+            for(int i = 0; i < 8; i++)
+            {
+                week.Add(null);
+            }
+            var viewModel = new OneWeekSchedule()
+            {
+                Employees = employees,
+                ShiftLengths = shiftLengths,
+                ShiftStartTimes = shiftStartTimes,
+                Week = week
+            };
+            return View(viewModel);
         }
     }
 }

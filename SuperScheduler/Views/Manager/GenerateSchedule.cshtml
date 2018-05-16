@@ -1,44 +1,49 @@
 ﻿@model SuperScheduler.Models.OneWeekSchedule
 
 @{
-    ViewBag.Title = "GenerateSchedule";
+    ViewBag.Title = "Generate Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="col-sm-12">
-    <h2>Shift Lengths</h2>
+    <h2>Generate Schedule</h2>
     <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
         <thead>
             <tr>
-                <th text-align:center">Employee</th>
-                <th text-align:center">Sunday</th>
-                <th text-align:center">Monday</th>
-                <th text-align:center">Tuesday</th>
-                <th text-align:center">Wednesday</th>
-                <th text-align:center">Thursday</th>
-                <th text-align:center">Friday</th>
-                <th text-align:center">Saturday</th>
-                <th text-align:center">Sunday</th>
+                <th style="text-align:center">Employee</th>
+                <th style="text-align:center">Sunday</th>
+                <th style="text-align:center">Monday</th>
+                <th style="text-align:center">Tuesday</th>
+                <th style="text-align:center">Wednesday</th>
+                <th style="text-align:center">Thursday</th>
+                <th style="text-align:center">Friday</th>
+                <th style="text-align:center">Saturday</th>
+                <th style="text-align:center">Sunday</th>
             </tr>
         </thead>
         <tbody style="padding-top:10px;">
-            <tr>
-                @for (int i = 0; i < Model.Employees.Count; i++)
-                {
-                    <td padding-top:11px;">@Model.Employees[i].Name</td>
-                    for (int j = 0; j < Model.Week.Count; j++)
+
+            @for (int i = 0; i < Model.Employees.Count; i++)
+            {
+                <tr>
+                    @if (Model.Employees[i].Active)
                     {
-                        <td>
-                            @Html.NameFor(m => m.ShiftLenghts[j].Shift)
-                            @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftLength, new SelectList(Model.ShiftLenghts, "Id","ShiftLengths"), "Length of Shift")
-                        </td>
+                        <td style="padding-top:11px;">@Model.Employees[i].Name</td>
+                        for (int j = 0; j < Model.Week.Count; j++)
+                        {
+                            <td>
+                                @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftStartTime, new SelectList(Model.ShiftStartTimes, "Id", "ShiftStartTime"), "Shift Start Time", new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
+                                @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftLength, new SelectList(Model.ShiftLengths, "Id", "Shift"), "Length of Shift", new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
+                            </td>
+                        }
                     }
-                }
-            </tr>
+                </tr>
+            }
+
 
         </tbody>
     </table>
 
-    @Html.ActionLink("Add", "AddShiftLengths", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px; width: 80px" })
+    @Html.ActionLink("Auto Generate", "AddShiftLengths", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px;" })
 </div>
