@@ -136,7 +136,8 @@ namespace SuperScheduler.Controllers
         {
             var viewModel = new EmployeeViewModel()
             {
-                Employees = _context.Employees.ToList()
+                Employees = _context.Employees.ToList(),
+                Positions = _context.Positions.ToList()
             };
             return View(viewModel);
         }
@@ -149,6 +150,23 @@ namespace SuperScheduler.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Employees");
+        }
+
+        public ActionResult EditEmployeePositions()
+        {
+            var viewModel = new EmployeeViewModel()
+            {
+                Employees = _context.Employees.ToList(),
+                Positions = _context.Positions.ToList()
+            };
+            return View(viewModel);
+        }
+
+        public ActionResult ChangeEmployeePosition(string employeeId)
+        {
+            var employee = _context.Employees.Select(e => e).Where(e => e.UserId == employeeId).FirstOrDefault();
+
+            return RedirectToAction("EditEmployeePositions");
         }
 
         public ActionResult ShiftLengths()

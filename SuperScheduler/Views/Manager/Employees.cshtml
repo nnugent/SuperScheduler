@@ -15,6 +15,7 @@
                 <tr>
                     <th style="text-align:center">#</th>
                     <th style="text-align:center">Employee Name</th>
+                    <th style="text-align:center">Position</th>
                     <th style="text-align:center">Phone Number</th>
                     <th style="text-align:center">Employee Status</th>
                     <th style="text-align:center">Change Status</th>
@@ -28,8 +29,15 @@
                         <tr>
                             <td style="padding-top:14px;">@row</td>
                             <td style="padding-top:14px;">@el.Name</td>
+                            @if (el.Position == null)
+                            {
+                                <td style="padding-top:14px;">Not Assigned</td>
+                            }
+                            else
+                            {
+                                <td style="padding-top:14px;">@el.Position</td>
+                            }
                             <td style="padding-top:14px;">@el.PhoneNumber</td>
-
                             @if (el.Active)
                             {
                                 <td style="padding-top:14px; color:#00bc8c"><b>Active</b></td>
@@ -56,4 +64,7 @@
     {
         <h3>You have no employees to look at!</h3>
     }
+
+    @Html.ActionLink("Edit Employee Positions", "EditEmployeePositions", "Manager", null, new { @class = " btn btn-primary" })
+
 </div>

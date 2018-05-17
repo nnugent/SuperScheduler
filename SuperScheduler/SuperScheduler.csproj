@@ -421,6 +421,7 @@
     <Content Include="Views\Manager\GenerateSchedule.cshtml" />
     <Content Include="Views\Manager\Employees.cshtml" />
     <Content Include="Views\Employee\AccountDetails.cshtml" />
+    <Content Include="Views\Manager\EditEmployeePositions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

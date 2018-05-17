@@ -9,5 +9,9 @@ namespace SuperScheduler.ViewModels
     public class EmployeeViewModel
     {
         public List<Employee> Employees { get; set; }
+
+        public List<Position> Positions { get; set; }
+
+
     }
 }
