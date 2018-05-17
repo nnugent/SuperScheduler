@@ -17,6 +17,11 @@ namespace SuperScheduler.Models
 
         public string Name { get; set; }
 
+        public int? PositionId{ get; set; }
+
+        [ForeignKey("PositionId")]
+        public Position Position { get; set; }
+
         [Display(Name = "Max hours each week.")]
         public byte MaxHours { get; set; }
 

@@ -231,6 +231,20 @@
     <Compile Include="Migrations\201805152009010_AddedInformationToEmployeeModel.Designer.cs">
       <DependentUpon>201805152009010_AddedInformationToEmployeeModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805162151379_AddPositionListToOneWeekSchedule\.cs" />
+    <Compile Include="Migrations\201805162151379_AddPositionListToOneWeekSchedule\.Designer.cs" />
+    <Compile Include="Migrations\201805162156019_AddedPositionForeignKeyToEmployee.cs" />
+    <Compile Include="Migrations\201805162156019_AddedPositionForeignKeyToEmployee.Designer.cs">
+      <DependentUpon>201805162156019_AddedPositionForeignKeyToEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805162207503_instructor.cs" />
+    <Compile Include="Migrations\201805162207503_instructor.Designer.cs">
+      <DependentUpon>201805162207503_instructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805171803455_UpdatedEmployeePositionIdToBeNullable.cs" />
+    <Compile Include="Migrations\201805171803455_UpdatedEmployeePositionIdToBeNullable.Designer.cs">
+      <DependentUpon>201805171803455_UpdatedEmployeePositionIdToBeNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Preference.cs" />
     <Compile Include="Global.asax.cs">
@@ -471,6 +485,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805152009010_AddedInformationToEmployeeModel.resx">
       <DependentUpon>201805152009010_AddedInformationToEmployeeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162151379_AddPositionListToOneWeekSchedule\.resx">
+      <DependentUpon>.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162156019_AddedPositionForeignKeyToEmployee.resx">
+      <DependentUpon>201805162156019_AddedPositionForeignKeyToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162207503_instructor.resx">
+      <DependentUpon>201805162207503_instructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171803455_UpdatedEmployeePositionIdToBeNullable.resx">
+      <DependentUpon>201805171803455_UpdatedEmployeePositionIdToBeNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

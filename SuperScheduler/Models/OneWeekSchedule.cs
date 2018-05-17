@@ -16,5 +16,7 @@ namespace SuperScheduler.Models
         public List<ShiftLengths> ShiftLengths { get; set; }
 
         public List<ShiftStartTimes> ShiftStartTimes { get; set; }
+
+        public List<Position> Positions { get; set; }
     }
 }
