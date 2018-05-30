@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,5 +19,9 @@ namespace SuperScheduler.Models
         public List<ShiftStartTimes> ShiftStartTimes { get; set; }
 
         public List<Position> Positions { get; set; }
+
+        [Display (Name = "Max Hours of Overtime")]
+        public int OvertimeLimit { get; set; }
+
     }
 }

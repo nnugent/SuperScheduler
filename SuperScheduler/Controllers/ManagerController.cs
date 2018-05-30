@@ -162,10 +162,11 @@ namespace SuperScheduler.Controllers
             return View(viewModel);
         }
 
-        public ActionResult ChangeEmployeePosition(string employeeId)
+        public ActionResult ChangeEmployeePosition(string employeeId, int? positionId)
         {
             var employee = _context.Employees.Select(e => e).Where(e => e.UserId == employeeId).FirstOrDefault();
-
+            employee.PositionId = positionId;
+            _context.SaveChanges();
             return RedirectToAction("EditEmployeePositions");
         }
 

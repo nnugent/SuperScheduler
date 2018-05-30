@@ -38,6 +38,9 @@ namespace SuperScheduler.Models
 
         public DbSet<Preference> Preferences { get; set; }
 
+        public DbSet<ScheduleSettings> ScheduleSettings { get; set; }
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

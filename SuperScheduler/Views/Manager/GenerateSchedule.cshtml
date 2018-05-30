@@ -45,5 +45,14 @@
         </tbody>
     </table>
 
+    <div>
+        <div class="">
+            @Html.LabelFor(m => m.OvertimeLimit)
+            @Html.TextBoxFor(m => m.OvertimeLimit, null, new { @class = "form-control", @style = "Height: 30px; Width: 160px;" })
+        </div>
+        <br/>
+    </div>
+
+
     @Html.ActionLink("Auto Generate", "AddShiftLengths", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px;" })
 </div>

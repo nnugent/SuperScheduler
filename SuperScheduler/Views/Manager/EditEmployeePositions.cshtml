@@ -25,12 +25,13 @@
                     for (int i = 0; i < Model.Employees.Count; i++)
                     {
                         <tr>
+
                             <td style="padding-top:14px;">@row</td>
                             <td style="padding-top:14px;">@Model.Employees[i].Name</td>
                             <td>
-                                @Html.DropDownListFor(m => m.Employees[i].PositionId, new SelectList(Model.Positions, "Id", "Name"), "Select Position", new { @class = "form-control ", @style = "padding: 5px; height: 35px; margin-left: auto; margin-right:auto;" })
+                                @Html.DropDownList("Positions", new SelectList(Model.Positions, "Id", "Name"), "Select Position", new { @class = "form-control ", @style = "padding: 5px; height: 35px; margin-left: auto; margin-right:auto;" })
                             </td>
-                            <td style="padding-top:14px;">@Model.Employees[i].PhoneNumber</td>
+                            <td style="padding-to p:14px;">@Model.Employees[i].PhoneNumber</td>
                             <td>
                                 @Html.ActionLink("Save", "ChangeEmployeePosition", "Manager", new { employeeId = Model.Employees[i].UserId, positionId = Model.Employees[i].PositionId }, new { @class = " btn btn-primary", @style = "padding: 5px; width: 90px" })
                             </td>
@@ -46,6 +47,12 @@
         <h3>You have no employees to look at!</h3>
     }
 
-    @Html.ActionLink("Edit Employee Positions", "ChangeEmployeePositions", "Manager", null, new { @class = " btn btn-primary" })
-    
+    @Html.ActionLink("Done", "Employees", "Manager", null, new { @class = " btn btn-primary" })
+
 </div>
+
+<script>
+    function SubmitInfo() {
+
+    }
+</script>

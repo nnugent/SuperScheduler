@@ -245,6 +245,18 @@
     <Compile Include="Migrations\201805171803455_UpdatedEmployeePositionIdToBeNullable.Designer.cs">
       <DependentUpon>201805171803455_UpdatedEmployeePositionIdToBeNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805301707530_AddOvertimeLimitToOneWeekSchedule.cs" />
+    <Compile Include="Migrations\201805301707530_AddOvertimeLimitToOneWeekSchedule.Designer.cs">
+      <DependentUpon>201805301707530_AddOvertimeLimitToOneWeekSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301844076_AddedScheduleSettings.cs" />
+    <Compile Include="Migrations\201805301844076_AddedScheduleSettings.Designer.cs">
+      <DependentUpon>201805301844076_AddedScheduleSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805302022172_ReAddedOvertimeLimitToOneWeekSchedule.cs" />
+    <Compile Include="Migrations\201805302022172_ReAddedOvertimeLimitToOneWeekSchedule.Designer.cs">
+      <DependentUpon>201805302022172_ReAddedOvertimeLimitToOneWeekSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Preference.cs" />
     <Compile Include="Global.asax.cs">
@@ -293,6 +305,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OneWeekSchedule.cs" />
     <Compile Include="Models\Position.cs" />
+    <Compile Include="Models\ScheduleSettings.cs" />
     <Compile Include="Models\Shift.cs" />
     <Compile Include="Models\ShiftLengths.cs" />
     <Compile Include="Models\ShiftStartTimes.cs" />
@@ -422,6 +435,7 @@
     <Content Include="Views\Manager\Employees.cshtml" />
     <Content Include="Views\Employee\AccountDetails.cshtml" />
     <Content Include="Views\Manager\EditEmployeePositions.cshtml" />
+    <Content Include="Views\Manager\ScheduleConfig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -498,6 +512,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805171803455_UpdatedEmployeePositionIdToBeNullable.resx">
       <DependentUpon>201805171803455_UpdatedEmployeePositionIdToBeNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301707530_AddOvertimeLimitToOneWeekSchedule.resx">
+      <DependentUpon>201805301707530_AddOvertimeLimitToOneWeekSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301844076_AddedScheduleSettings.resx">
+      <DependentUpon>201805301844076_AddedScheduleSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805302022172_ReAddedOvertimeLimitToOneWeekSchedule.resx">
+      <DependentUpon>201805302022172_ReAddedOvertimeLimitToOneWeekSchedule.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

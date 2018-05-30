@@ -1,0 +1,62 @@
+﻿@model SuperScheduler.Models.ScheduleSettings
+@{
+    ViewBag.Title = "Schedule Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+    <h2>Schedule Settings</h2>
+    @if (Model.BusyTimes.Count > 0)
+    {
+        <h3>Busy Times</h3>
+        <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
+            <thead>
+                <tr>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Beginning Time</th>
+                    <th style="text-align:center">Duration</th>
+                </tr>
+            </thead>
+            <tbody style="padding-top:10px;">
+
+                @for (int i = 0; i < Model.BusyTimes.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.TextBoxFor(m => m.BusyTimeNames[i], null, new { @class = "form-control", @style = "Height: 20px; width: 100px;" })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.BusyTimes[i].ShiftLength, null, new { @class = "form-control", @style = "Height: 20px; width: 100px;" })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.BusyTimes[i].ShiftStartTime, null, new { @class = "form-control", @style = "Height: 20px; width: 100px;" })
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+        <div>
+            <div class="">
+                @Html.LabelFor(m => m.OvertimeLimit): @Html.EditorFor(m => m.OvertimeLimit)
+            </div>
+        </div>
+    }
+    else
+    {
+        <h3>You have no set busy times. Click 'Add' to create your first Busy Time</h3>
+    }
+    @Html.ActionLink("Add", "AddBusyTime", "Manager", null, new { @class = " btn btn-default ", @style = "padding: 5px;" })
+
+    <div class="col-md-4">
+        @Html.LabelFor(m => m.OvertimeLimit)
+        @Html.TextBoxFor(m => m.OvertimeLimit, null, new { @class = "form-control", @style = "Height: 20px; width: 100px;" })
+    </div>
+    <div class="col-md-8">
+        <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+    </div>
+        
+</div>
+
