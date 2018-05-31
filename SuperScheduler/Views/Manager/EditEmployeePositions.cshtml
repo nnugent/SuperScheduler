@@ -6,49 +6,45 @@
 
 <div class="col-sm-12">
     <h2>Edit Employee Positions</h2>
-
-    @if (Model.Employees.Count > 0)
+    @using (Html.BeginForm("ChangeEmployeePositions", "Manager"))
     {
-        <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
-            <thead>
-                <tr>
-                    <th style="text-align:center">#</th>
-                    <th style="text-align:center">Employee Name</th>
-                    <th style="text-align:center">Position</th>
-                    <th style="text-align:center">Phone Number</th>
-                    <th style="text-align:center">Save Changes</th>
-                </tr>
-            </thead>
-            <tbody style="padding-top:10px;">
-                @{
-                    int row = 1;
-                    for (int i = 0; i < Model.Employees.Count; i++)
-                    {
-                        <tr>
-
-                            <td style="padding-top:14px;">@row</td>
-                            <td style="padding-top:14px;">@Model.Employees[i].Name</td>
-                            <td>
-                                @Html.DropDownList("Positions", new SelectList(Model.Positions, "Id", "Name"), "Select Position", new { @class = "form-control ", @style = "padding: 5px; height: 35px; margin-left: auto; margin-right:auto;" })
-                            </td>
-                            <td style="padding-to p:14px;">@Model.Employees[i].PhoneNumber</td>
-                            <td>
-                                @Html.ActionLink("Save", "ChangeEmployeePosition", "Manager", new { employeeId = Model.Employees[i].UserId, positionId = Model.Employees[i].PositionId }, new { @class = " btn btn-primary", @style = "padding: 5px; width: 90px" })
-                            </td>
-                            @{row++;}
-                        </tr>
+        if (Model.Employees.Count > 0)
+        {
+            <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Employee Name</th>
+                        <th style="text-align:center">Position</th>
+                        <th style="text-align:center">Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody style="padding-top:10px;">
+                    @{
+                        int row = 1;
+                        for (int i = 0; i < Model.Employees.Count; i++)
+                        {
+                            <tr>
+                                <td style="padding-top:14px;">@row</td>
+                                <td style="padding-top:14px;">@Model.Employees[i].Name</td>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Employees[i].PositionId, new SelectList(Model.Positions, "Id", "Name"), Model.Employees[i].Position.Name, new { @class = "form-control ", @style = "padding: 5px; height: 35px; margin-left: auto; margin-right:auto;" })
+                                </td>
+                                <td style="padding-to p:14px;">@Model.Employees[i].PhoneNumber</td>
+                                @{row++;}
+                            </tr>
+                        }
                     }
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h3>You have no employees to look at!</h3>
+        }
+        <button type="submit" class="btn btn-default" style="width:100px">Save</button>
+        @Html.ActionLink("Done", "Employees", "Manager", null, new { @class = " btn btn-primary" })
     }
-    else
-    {
-        <h3>You have no employees to look at!</h3>
-    }
-
-    @Html.ActionLink("Done", "Employees", "Manager", null, new { @class = " btn btn-primary" })
-
 </div>
 
 <script>

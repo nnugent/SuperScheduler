@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
-
 using System.Web.UI;
 using System.Windows.Forms;
 using SuperScheduler.ViewModels;
@@ -166,6 +165,20 @@ namespace SuperScheduler.Controllers
         {
             var employee = _context.Employees.Select(e => e).Where(e => e.UserId == employeeId).FirstOrDefault();
             employee.PositionId = positionId;
+            _context.SaveChanges();
+            return RedirectToAction("EditEmployeePositions");
+        }
+
+        public ActionResult ChangeEmployeePositions(EmployeeViewModel viewModel)
+        {
+            var currentEmployees = _context.Employees.ToList();
+            for(int i = 0; i < currentEmployees.Count; i++)
+            {
+                if (viewModel.Employees[i].PositionId != null)
+                {
+                    currentEmployees[i].PositionId = viewModel.Employees[i].PositionId;
+                }
+            }
             _context.SaveChanges();
             return RedirectToAction("EditEmployeePositions");
         }

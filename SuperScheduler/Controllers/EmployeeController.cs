@@ -59,6 +59,7 @@ namespace SuperScheduler.Controllers
                     employee.UserId = userId;
                     employee.Active = false;
                     _context.Employees.Add(employee);
+                    employee.PositionId = _context.Positions.FirstOrDefault().Id;
                 }
                 try
                 {
