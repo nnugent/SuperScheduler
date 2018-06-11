@@ -7,13 +7,13 @@ namespace SuperScheduler.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedInformationToEmployeeModel : IMigrationMetadata
+    public sealed partial class AddDisplayValuesToShiftObjects : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedInformationToEmployeeModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDisplayValuesToShiftObjects));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805152009010_AddedInformationToEmployeeModel"; }
+            get { return "201806071800292_AddDisplayValuesToShiftObjects"; }
         }
         
         string IMigrationMetadata.Source

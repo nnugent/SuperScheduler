@@ -7,13 +7,13 @@ namespace SuperScheduler.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeTimeSpanToString : IMigrationMetadata
+    public sealed partial class ResetMigrations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeTimeSpanToString));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ResetMigrations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804131254125_ChangeTimeSpanToString"; }
+            get { return "201806061718327_ResetMigrations"; }
         }
         
         string IMigrationMetadata.Source

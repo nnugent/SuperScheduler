@@ -9,9 +9,11 @@ namespace SuperScheduler.Models
     {
         public int Id { get; set; }
 
+        public ShiftStartTimes ShiftStartTime { get; set; }
+
         public ShiftLengths ShiftLength { get; set; }
 
-        public ShiftStartTimes ShiftStartTime { get; set; }
+        
 
     }
 }

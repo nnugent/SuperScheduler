@@ -12,5 +12,7 @@ namespace SuperScheduler.Models
 
         [Display(Name = "Shift Length")]
         public double Shift { get; set; }
+
+        public bool Display { get; set; }
     }
 }

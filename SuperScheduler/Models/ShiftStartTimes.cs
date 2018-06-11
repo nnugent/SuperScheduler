@@ -12,5 +12,8 @@ namespace SuperScheduler.Models
 
         [Display(Name = "Shift Start Time")]
         public double ShiftStartTime { get; set; }
+
+        public bool Display { get; set; }
+
     }
 }

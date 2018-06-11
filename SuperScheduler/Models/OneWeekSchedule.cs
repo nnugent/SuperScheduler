@@ -20,6 +20,9 @@ namespace SuperScheduler.Models
 
         public List<Position> Positions { get; set; }
 
+        [Display(Name = "Name of Schedule")]
+        public string ScheduleName { get; set; }
+
         [Display (Name = "Max Hours of Overtime")]
         public int OvertimeLimit { get; set; }
 

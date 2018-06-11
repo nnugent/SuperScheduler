@@ -52,6 +52,7 @@ namespace SuperScheduler.Controllers
                 bool exists = CheckIfExists(newShift);
                 if (!exists)
                 {
+                    newShift.Display = true;
                     _context.ShiftLengths.Add(newShift);
                     _context.SaveChanges();
                 }
@@ -101,6 +102,7 @@ namespace SuperScheduler.Controllers
                 bool exists = CheckIfExists(newShiftStartTime);
                 if (!exists)
                 {
+                    newShiftStartTime.Display = true;
                     _context.ShiftStartTimes.Add(newShiftStartTime);
                     _context.SaveChanges();
                 }
@@ -285,6 +287,7 @@ namespace SuperScheduler.Controllers
             var employees = _context.Employees.ToList();
             var shiftLengths = _context.ShiftLengths.ToList();
             var shiftStartTimes = _context.ShiftStartTimes.ToList();
+            var positions = _context.Positions.ToList();
             var week = new List<Models.Day>();
 
             for(int i = 0; i < 8; i++)
@@ -296,9 +299,91 @@ namespace SuperScheduler.Controllers
                 Employees = employees,
                 ShiftLengths = shiftLengths,
                 ShiftStartTimes = shiftStartTimes,
+                Positions = positions,
                 Week = week
             };
             return View(viewModel);
+        }
+
+        public ActionResult AutoGenerateSchedule(OneWeekSchedule schedule)
+        {
+            Random ran = new Random();
+            var week = schedule.Week.ToList();
+            var shiftStartTimes = _context.ShiftStartTimes.ToList();
+            var shiftLengths = _context.ShiftLengths.ToList();
+            var employees = _context.Employees.ToList();
+            var positions = _context.Positions.ToList();
+
+            for(int i = 0; i < week.Count; i++)
+            {
+                for(int j = 0; j < week[i].Shifts.Count; j++)
+                {
+                    if (week[i].Shifts[j].ShiftStartTime.ShiftStartTime == 0)
+                    {
+                        if (ran.Next(10) < 7)
+                        {
+                            week[i].Shifts[j].ShiftStartTime = shiftStartTimes[ran.Next(shiftStartTimes.Count())];
+                        }
+                        else
+                        {
+                            week[i].Shifts[j].ShiftStartTime.ShiftStartTime = 0;
+                        }
+                    }
+
+                    if (week[i].Shifts[j].ShiftLength.Shift == 0 && week[i].Shifts[j].ShiftStartTime.ShiftStartTime != 0)
+                    {
+                        if (week[i].Shifts[j].ShiftStartTime.ShiftStartTime + 8 <= 23)
+                        {
+                            week[i].Shifts[j].ShiftLength.Shift = 8;
+                        }
+                        else
+                        {
+                            week[i].Shifts[j].ShiftLength.Shift = 23 - week[i].Shifts[j].ShiftStartTime.ShiftStartTime;
+                        }
+                    }
+                }
+            }
+
+            schedule.ShiftLengths = shiftLengths;
+            schedule.ShiftStartTimes = shiftStartTimes;
+            schedule.Employees = employees;
+            schedule.Week = week;
+            schedule.Positions = positions;
+
+            return View("ScheduleStepTwo", schedule);
+        }
+
+        public ActionResult ViewSchedules()
+        {
+            var viewModel = new SchedulesViewModel()
+            {
+                Schedules = _context.OneWeekSchedules.ToList()
+            };
+            return View("ViewSchedules", viewModel);
+        }
+
+        public ActionResult DeleteSchedule(string scheduleName)
+        {
+            var thing = _context.OneWeekSchedules.Select(s => s).FirstOrDefault(s => s.ScheduleName.Equals(scheduleName));
+            _context.OneWeekSchedules.Remove(thing);
+            _context.SaveChanges();
+            return RedirectToAction("ViewSchedules");
+        }
+
+        public ActionResult SaveSchedule(OneWeekSchedule schedule)
+        {
+            _context.OneWeekSchedules.Add(schedule);
+            _context.SaveChanges();
+            var viewModel = new OneWeekSchedule()
+            {
+                Employees = _context.Employees.ToList(),
+                Week = schedule.Week,
+                Positions = _context.Positions.ToList(),
+                ScheduleName = schedule.ScheduleName,
+                ShiftLengths = _context.ShiftLengths.ToList(),
+                ShiftStartTimes = _context.ShiftStartTimes.ToList()
+            };
+            return View("DisplaySchedule", viewModel);
         }
     }
 }

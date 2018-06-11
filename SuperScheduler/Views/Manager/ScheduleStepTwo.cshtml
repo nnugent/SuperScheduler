@@ -8,7 +8,7 @@
 
 <div class="col-sm-12">
     <h2>Generate Schedule</h2>
-    @using (Html.BeginForm("AutoGenerateSchedule", "Manager"))
+    @using (Html.BeginForm("SaveSchedule", "Manager"))
     {
         <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
             <thead>
@@ -31,12 +31,12 @@
                     <tr>
                         @if (Model.Employees[i].Active)
                         {
-                            <td style="padding-top: 5px;padding-bottom:1px;">@Model.Employees[i].Name <p style="font-size: 10px;">@Model.Employees[i].Position.Name</p></td>
-                                    for (int j = 0; j < Model.Week.Count; j++)
-                                    {
+                        <td style="padding-top: 5px;padding-bottom:1px;">@Model.Employees[i].Name <p style="font-size: 10px;">@Model.Employees[i].Position.Name</p></td>
+                            for (int j = 0; j < Model.Week.Count; j++)
+                            {
                                 <td class="" style="text-align:center">
-                                    @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftStartTime.ShiftStartTime, new SelectList(Model.ShiftStartTimes, "ShiftStartTime", "ShiftStartTime"), "Shift Start Time", new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
-                                    @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftLength.Shift, new SelectList(Model.ShiftLengths, "Shift", "Shift"), "Length of Shift", new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
+                                    @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftStartTime.ShiftStartTime, new SelectList(Model.ShiftStartTimes, "ShiftStartTime", "ShiftStartTime"), Model.Week[j].Shifts[i].ShiftStartTime.ShiftStartTime.ToString(), new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
+                                    @Html.DropDownListFor(m => m.Week[j].Shifts[i].ShiftLength.Shift, new SelectList(Model.ShiftLengths, "Shift", "Shift"), Model.Week[j].Shifts[i].ShiftLength.Shift.ToString(), new { @class = "form-control", @style = "font-size: 8px; height: 15px; width: 85px; padding: 2px 4px; margin: 2px;" })
                                 </td>
                             }
                         }
@@ -46,12 +46,16 @@
             </tbody>
         </table>
         <div>
-            <div class="">
+            <div class="col-md-6">
                 @Html.LabelFor(m => m.OvertimeLimit)
                 @Html.TextBoxFor(m => m.OvertimeLimit, null, new { @class = "form-control", @style = "Height: 30px; Width: 160px;" })
             </div>
+            <div class="col-md-offset-10">
+                @Html.LabelFor(m => m.ScheduleName)
+                @Html.TextBoxFor(m => m.ScheduleName, null, new { @class = "form-control", @style = "Height: 30px; Width: 160px;" })
+            </div>
             <br />
         </div>
-        <button type="submit" class="btn btn-default" style="width:100px">Generate</button>
+        <button type="submit" class="btn btn-default" style="width:200px">Save to Database</button>
     }
 </div>

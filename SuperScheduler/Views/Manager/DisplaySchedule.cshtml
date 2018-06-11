@@ -1,0 +1,49 @@
+﻿@model SuperScheduler.Models.OneWeekSchedule
+
+@{
+    ViewBag.Title = "Schedule View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-sm-12">
+    <h2>@Model.ScheduleName</h2>
+
+    <table class="table-hover table-striped table" style="width:100%; text-align:center; font-size:16px;">
+        <thead>
+            <tr>
+                <th style="text-align:center">Employee</th>
+                <th style="text-align:center">Sunday</th>
+                <th style="text-align:center">Monday</th>
+                <th style="text-align:center">Tuesday</th>
+                <th style="text-align:center">Wednesday</th>
+                <th style="text-align:center">Thursday</th>
+                <th style="text-align:center">Friday</th>
+                <th style="text-align:center">Saturday</th>
+                <th style="text-align:center">Sunday</th>
+            </tr>
+        </thead>
+        <tbody style="padding-top:10px;">
+
+            @for (int i = 0; i < Model.Employees.Count; i++)
+            {
+                <tr>
+                    @if (Model.Employees[i].Active)
+                    {
+                        <td style="padding-top: 5px;padding-bottom:1px;">@Model.Employees[i].Name <p style="font-size: 10px;">@Model.Employees[i].Position.Name</p></td>
+                        for (int j = 0; j < Model.Week.Count; j++)
+                        {
+                        <td class="" style="text-align:center">
+                            <p style="font-size: 10px;">
+                                @Model.Week[j].Shifts[i].ShiftStartTime.ShiftStartTime:00 <br /> for <br />
+                                @Model.Week[j].Shifts[i].ShiftLength.Shift hours
+                            </p>
+                        </td>
+                        }
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
